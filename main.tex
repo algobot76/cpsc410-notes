@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
+\usepackage[normalem]{ulem}
+
 \title{CPSC 410 Notes}
 \author{Kaitian Xie}
 \date{June 2020}
@@ -61,8 +63,8 @@
     \begin{enumerate}
         \item Differentiate the main types of program analysis, comparing their potential applications, strengths, and weaknesses.
         \item Design program analyses to extract and synthesise information to aid programmers with their daily work.
-        \item Implement simple program analyses and visualizations of their results.
-        \item Create useful visualizations of programming-related data.
+        \item \sout{Implement simple program analyses and visualizations of their results.}
+        \item \sout{Create useful visualizations of programming-related data.}
         \item Justify the likely usefulness of program analyses and visualizations.
         \item Evaluate particular program analyses/visualizations using empirical studies.
         \item Categorise analyses according to the main types presented here, justifying which are necessary/useful for which tasks.
@@ -96,6 +98,57 @@
 \section{User-Driven Language Design and Empirical Studies}
 
 \section{Program Analysis and Visualization}
+
+\subsection{Main Types of Program Analysis}
+
+\begin{itemize}
+    \item Raw Data Analysis
+    \begin{itemize}
+        \item Analysis of raw data, not structured program representation (e.g. ASTs).
+        \item Strengths
+        \begin{itemize}
+            \item Quick and easy.
+            \item Can be built on a pre-exiting raw data analysis.
+        \end{itemize}
+        \item Weaknesses
+        \begin{itemize}
+            \item Not precise/detailed.
+        \end{itemize}
+        \item Applications
+        \begin{itemize}
+            \item diff
+            \item grep, sed
+            \item git (e.g. git blame)
+            \item Issue tracker info (e.g. GitHub)
+        \end{itemize}
+    \end{itemize}
+    \item Meta-Properties Analysis
+    \begin{itemize}
+        \item Analysis of project-level/software process metrics.
+        \item Applications
+        \begin{itemize}
+            \item Show git history.
+        \end{itemize}
+    \end{itemize}
+    \item Static Program Analysis
+    \begin{itemize}
+        \item Analysis of structured source code (ASTs) before running it.
+        \item Applications
+        \begin{itemize}
+            \item Enforcing coding guidelines (value-agnostic).
+            \item Reporting potential behaviours (value-sensitive).
+        \end{itemize}
+    \end{itemize}
+    \item Dynamic Program Analysis
+    \begin{itemize}
+        \item Analysis of code while running it.
+        \item Applications
+        \begin{itemize}
+            \item Runtime checks (e.g. array bounds).
+            \item Debugger.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 \section{Digesting and Evaluating PL/SE Research Papers}
 
