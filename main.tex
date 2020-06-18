@@ -65,8 +65,8 @@
         \item Design program analyses to extract and synthesise information to aid programmers with their daily work.
         \item \sout{Implement simple program analyses and visualizations of their results.}
         \item \sout{Create useful visualizations of programming-related data.}
-        \item Justify the likely usefulness of program analyses and visualizations.
-        \item Evaluate particular program analyses/visualizations using empirical studies.
+        \item \sout{Justify the likely usefulness of program analyses and visualizations.}
+        \item \sout{Evaluate particular program analyses/visualizations using empirical studies.}
         \item Categorise analyses according to the main types presented here, justifying which are necessary/useful for which tasks.
         \item Contrast the pros and cons of raw-data vs. static program analyses, in situations where either could be applicable.
         \item Describe the high-level implementation strategies for making large-scale static/meta-property analyses efficient.
@@ -147,6 +147,26 @@
             \item Runtime checks (e.g. array bounds).
             \item Debugger.
         \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{High-Level Implementation Strategies for Large-Scale Analyses}
+
+\begin{itemize}
+    \item Visitor Pattern
+    \begin{itemize}
+        \item Usage of features from classes.
+        \item Indirect dependencies (e.g. subclassing, inherited code)
+    \end{itemize}
+    \item Existing libraries for exploring Java ASTs
+    \begin{itemize}
+        \item Eclipse's Java ASTVisitor
+        \item javax.lang.model
+    \end{itemize}
+    \item Frameworks for specifying program analyses declaratively (e.g. Datalog)
+    \begin{itemize}
+        \item Data extraction: reusable database of facts.
+        \item Relations of interest.
     \end{itemize}
 \end{itemize}
 
