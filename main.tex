@@ -55,12 +55,14 @@
     \end{enumerate}
     \item User-Driven Language Design and Empirical Studies
     \begin{enumerate}
+        \setcounter{enumi}{31}
         \item Compare user-centric design (particularly for teaching) with language design in general, giving example motivations for user-centric languages (Logo, Grace) and how their motivations influenced their designs specifically.
         \item Design ethical empirical studies, appropriately identifying risks (and their importance) and strategies for mitigating risks when possible.
         \item Evaluate empirical studies for threats to validity, judge their likely impact on a study's conclusion, and propose strategies for mitigating these when possible.
     \end{enumerate}
     \item Program Analysis and Visualization
     \begin{enumerate}
+        \setcounter{enumi}{34}
         \item Differentiate the main types of program analysis, comparing their potential applications, strengths, and weaknesses.
         \item Design program analyses to extract and synthesise information to aid programmers with their daily work.
         \item \sout{Implement simple program analyses and visualizations of their results.}
@@ -87,6 +89,7 @@
     \end{enumerate}
     \item Digesting and Evaluating PL/SE Research Papers
     \begin{enumerate}
+        \setcounter{enumi}{57}
         \item Explain the key things to look for when skim-reading a research paper.
         \item \sout{Apply your knowledge of empirical evaluation techniques to critically evaluate the evidence provided in a research paper.}
         \item \sout{Create short, high-level, summaries of the main points of a research paper.}
@@ -150,6 +153,8 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Raw-Data vs. Static Program Analyses}
+
 \subsection{High-Level Implementation Strategies for Large-Scale Analyses}
 
 \begin{itemize}
@@ -167,6 +172,77 @@
     \begin{itemize}
         \item Data extraction: reusable database of facts.
         \item Relations of interest.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Static Program Slicing}
+
+\begin{itemize}
+    \item Key idea: compute a map before/after each statement from variables to a set of line numbers, representing those the current value of that variable may have been influenced by.
+    \item Examples
+    \begin{itemize}
+        \item L12 (18)
+        \item L13 (4-17)
+        \item A5 (1)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Instrumentation}
+
+\begin{itemize}
+    \item Instrumenting source code
+    \begin{itemize}
+        \item Requires less knowledge.
+    \end{itemize}
+    \item Instrumenting executable
+    \begin{itemize}
+        \item Applies to other languages that target the same representation.
+    \end{itemize}
+    \item Online dynamic analysis: run the analysis as part of/alongside the program.
+    \begin{itemize}
+        \item Influences the execution (e.g. debugger, runtime checks).
+    \end{itemize}
+    \item Offline dynamic analysis: make the program produce a log, then analyse it separately.
+    \begin{itemize}
+        \item Simple to implement.
+        \item More efficient (but logging may still be expensive).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Dynamic Program Slicing}
+
+\begin{itemize}
+    \item Process
+    \begin{itemize}
+        \item Create a map (variables to sets of line numbers).
+        \item Update the map for every assignment statement.
+        \item For branch/loop conditions
+        \begin{itemize}
+            \item Track a set of line numbers that represent the branch condition(s).
+            \item Union these sets when assigning a variable.
+            \item No changes to the map at the heads of loops/end of if-then-else.
+        \end{itemize}
+    \end{itemize}
+    \item Examples
+    \begin{itemize}
+        \item L13 (24)
+        \item L13 (25-26)
+        \item A5 (EX3)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Over- and Under-Approximations}
+
+\begin{itemize}
+    \item Over-approximation: track at least the actual behaviours, but maybe more (e.g. static program slicing).
+    \begin{itemize}
+        \item Including errors that never happen (false positive).
+        \item Including behaviours that the program never actually exhibits.
+    \end{itemize}
+    \item Under-approximation: track at most the actual behaviours, but maybe less (e.g. only definite dependencies).
+    \begin{itemize}
+        \item Missing errors that can actually happen (false negative).
+        \item Missing behaviours that the program can actually exhibit.
     \end{itemize}
 \end{itemize}
 
