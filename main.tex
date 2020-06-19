@@ -231,6 +231,27 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Static vs. Dynamic Slicing}
+
+\begin{itemize}
+    \item Static Slicing
+    \begin{itemize}
+        \item The slice keeps all statements $\rightarrow$ ever relevant.
+        \begin{itemize}
+            \item Over-estimation (imprecision due to "maybe" questions).
+        \end{itemize}
+    \end{itemize}
+    \item Dynamic Slicing
+    \begin{itemize}
+        \item A slice is only relevant for a single execution.
+        \begin{itemize}
+            \item Different input states $\rightarrow$ different behaviours.
+            \item Cannot be generalized.
+            \item When to stop?
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
 \subsection{Over- and Under-Approximations}
 
 \begin{itemize}
