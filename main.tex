@@ -3,6 +3,10 @@
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 \usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{float}
+
+\graphicspath{ {./images/} }
 
 \title{CPSC 410 Notes}
 \author{Kaitian Xie}
@@ -64,7 +68,7 @@
     \begin{enumerate}
         \setcounter{enumi}{34}
         \item Differentiate the main types of program analysis, comparing their potential applications, strengths, and weaknesses.
-        \item Design program analyses to extract and synthesise information to aid programmers with their daily work.
+        \item \sout{Design program analyses to extract and synthesise information to aid programmers with their daily work.}
         \item \sout{Implement simple program analyses and visualizations of their results.}
         \item \sout{Create useful visualizations of programming-related data.}
         \item \sout{Justify the likely usefulness of program analyses and visualizations.}
@@ -99,6 +103,39 @@
 \section{Domain Specific Languages}
 
 \section{User-Driven Language Design and Empirical Studies}
+
+\subsection{Logo and Grace}
+
+L7 (5-13)
+
+\subsection{The Empirical Method}
+
+% \includegraphics[width=\textwidth]{the_empirical_method}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{the_empirical_method}
+\end{figure}
+
+\subsection{Threats to Validity}
+
+\begin{itemize}
+    \item Construct Validity
+    \begin{itemize}
+        \item Research Questions $\rightarrow$ Planned Experiments(s)
+        \item Are we testing what we mean to test?
+    \end{itemize}
+    \item Internal Validity
+    \begin{itemize}
+        \item Experimental Results $\rightarrow$ Analysis and Discussion
+        \item Are the results solely due to our manipulations?
+    \end{itemize}
+    \item External Validity
+    \begin{itemize}
+        \item Analysis and Discussion $\rightarrow$ Answers?
+        \item Are our conclusions justiﬁed in general?
+    \end{itemize}
+\end{itemize}
 
 \section{Program Analysis and Visualization}
 
@@ -153,8 +190,6 @@
     \end{itemize}
 \end{itemize}
 
-\subsection{Raw-Data vs. Static Program Analyses}
-
 \subsection{High-Level Implementation Strategies for Large-Scale Analyses}
 
 \begin{itemize}
@@ -175,6 +210,61 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Main Properties About Code}
+
+\begin{itemize}
+    \item How the code is written
+    \begin{itemize}
+        \item Suitable for static analysis.
+        \item Examples
+        \begin{itemize}
+            \item Coding style
+            \item Recognising syntactic patterns
+        \end{itemize}
+    \end{itemize}
+    \item What the code does
+    \begin{itemize}
+        \item Difficult for static analysis.
+        \item Examples
+        \begin{itemize}
+            \item Can this method throw exceptions?
+            \item Will this loop terminate?
+        \end{itemize}
+    \end{itemize}
+    \item What the author intended
+    \begin{itemize}
+        \item Out of scope for static analysis.
+        \item Examples
+        \begin{itemize}
+            \item Under what conditions is calling this function supposed to work?
+            \item What should it do?
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{All-Executions and Single-Execution Properties}
+
+\begin{itemize}
+    \item All-executions property
+    \begin{itemize}
+        \item Related to the set of all possible executions.
+        \item Examples
+        \begin{itemize}
+            \item Can the method throw exceptions? $\rightarrow$ Is there any execution which does?
+            \item Does this method always terminate? $\rightarrow$ Are all executions terminating?
+            \item What does this loop compute in general?
+        \end{itemize}
+    \end{itemize}
+    \item Single-execution property
+    \begin{itemize}
+        \item Related to a single execution.
+        \item Examples
+        \begin{itemize}
+            \item What does this loop compute given one specific input state?
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
 \subsection{Static Program Slicing}
 
 \begin{itemize}
@@ -182,6 +272,7 @@
     \item Examples
     \begin{itemize}
         \item L12 (18)
+        \item L12 (19-20)
         \item L13 (4-17)
         \item A5 (1)
     \end{itemize}
@@ -264,6 +355,73 @@
     \begin{itemize}
         \item Missing errors that can actually happen (false negative).
         \item Missing behaviours that the program can actually exhibit.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Satisfiability}
+
+\begin{itemize}
+    \item Satisfiability problem: given a set of constraints with unknowns, do there exist values for the unknowns satisfying all constraints?
+    \item Examples
+    \begin{itemize}
+        \item L14 (13-21)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Symbolic Execution}
+
+\begin{itemize}
+    \item A technique for exploring sets of program executions all at once.
+    \begin{itemize}
+        \item Symbolic values: names that represent values we don't know statically (e.g. $U$, $V$).
+        \item Symbolic expression: expression over symbolic values, constants, and operators (e.g. $U < V + 1$).
+        \item Symbolic state: mapping from program variables to symbolic expressions (e.g. ($a \rightarrow U$, $b \rightarrow U + 2$)).
+        \item Symbolic evaluation of a program expression in a symbolic state $\rightarrow$ symbolic expression
+        \begin{itemize}
+            \item e.g. $a + b + 7$ and ($a \rightarrow U$, $b \rightarrow U + 2$) $\rightarrow$ $U + (U + 2) + 7$ ($= 2U + 9$)
+        \end{itemize}
+    \end{itemize}
+    \item Examples
+    \begin{itemize}
+        \item L14 (26)
+        \item L14 (27-28)
+        \item L14 (29-32)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Remaining Pain Points}
+
+\begin{itemize}
+    \item Indefinitely many initial states/executions
+    \begin{itemize}
+        \item A (terminating) analysis can't precisely explore them all.
+        \item Can ba addressed by symbolic execution.
+    \end{itemize}
+    \item Branch conditions
+    \begin{itemize}
+        \item Value-dependent alternative control ﬂow paths.
+        \item Can be addressed by symbolic execution.
+    \end{itemize}
+    \item Loop/recursion
+    \begin{itemize}
+        \item Unboundedly many control ﬂow paths.
+        \item Needs either over- or under-approximation.
+    \end{itemize}
+    \item Alias information/side effects
+    \begin{itemize}
+        \item Precisely tracking what changes per assignment/call.
+        \item Complex symbolic states.
+        \item Needs specialized static analyses.
+    \end{itemize}
+    \item Dynamically-determined program code
+    \begin{itemize}
+        \item Dynamic dispatch, reflection.
+        \item Needs specialized static analyses.
+    \end{itemize}
+    \item Concurrency
+    \begin{itemize}
+        \item Race conditions, non-determination.
+        \item Needs specialized static analyses.
     \end{itemize}
 \end{itemize}
 
