@@ -102,6 +102,61 @@
 
 \section{Domain Specific Languages}
 
+\subsection{Key Stages of DSL Implementation}
+
+\begin{itemize}
+    \item Tokenize
+    \begin{itemize}
+        \item Split your input into basic elements from your syntax.
+    \end{itemize}
+    \item Parse
+    \begin{itemize}
+        \item Check your syntax and build an internal representation (AST).
+    \end{itemize}
+    \item {[Validate]}
+    \begin{itemize}
+        \item Enforce desired correctness properties for allowed programs (e.g. types).
+    \end{itemize}
+    \item Evaluate
+    \begin{itemize}
+        \item Execute program directly (DSL interpreter), or generate code to be run externally (DSL compiler).
+    \end{itemize}
+\end{itemize}
+
+Example: L2 (5-13)
+
+\subsection{Recursive Evaluation and Visitor Pattern}
+
+\begin{itemize}
+    \item Recursive Evaluation
+    \begin{itemize}
+        \item Process
+        \begin{itemize}
+            \item Start at the root of the AST.
+            \item Carry out the work needed by the current node.
+            \item Call ``evaluate'' recursively on all child nodes.
+            \item Get the output by returning a value, modifying an existing object, printing, etc.
+        \end{itemize}
+        \item Examples
+        \begin{itemize}
+            \item tinyHTML
+            \item tinyDotStarter-evaluationCompleted
+        \end{itemize}
+    \end{itemize}
+    \item Visitor Pattern
+    \begin{itemize}
+        \item
+        \begin{minipage}{\linewidth}
+            \centering
+            \includegraphics[width=\textwidth]{visitor_pattern}
+        \end{minipage}
+        \item Examples
+        \begin{itemize}
+            \item tinyDotStarter-Visitor
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
 \section{User-Driven Language Design and Empirical Studies}
 
 \subsection{Logo and Grace}
@@ -109,8 +164,6 @@
 L7 (5-13)
 
 \subsection{The Empirical Method}
-
-% \includegraphics[width=\textwidth]{the_empirical_method}
 
 \begin{figure}[H]
     \centering
