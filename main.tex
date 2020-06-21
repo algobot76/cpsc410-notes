@@ -109,10 +109,46 @@
     \begin{itemize}
         \item L2 (13)
         \item L2 (15)
-        \item A1 (EX2)
-        \item A1 (EX3)
-        \item A1 (EX4)
-        \item A1 (EX5)
+        \item A1 (2)
+        \item A1 (3)
+        \item A1 (4)
+        \item A1 (5)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Tokenization and Parsing Strategies}
+
+\begin{itemize}
+    \item Tokenization
+    \begin{itemize}
+        \item Process
+            \begin{itemize}
+                \item Pick ``\_'' as a reserved word.
+                \item Read the entire program as a string without new lines.
+                \item Replace all constant literals with ``\_$<$literal$>$\_''.
+                \item Replace ``\_\_'' with ``\_''.
+                \item Split on ``\_''.
+                \item (If needed) pattern matches for non-constant literals during parsing.
+            \end{itemize}
+        \item Examples
+            \begin{itemize}
+                \item Tokenizer.java
+            \end{itemize}
+    \end{itemize}
+    \item Parsing
+    \begin{itemize}
+        \item Define the ``parse'' method of each node.
+        \begin{itemize}
+            \item Check the next token.
+            \item Create a child node for a sub-statement.
+            \item Parse on child nodes before continuing (recursive descent parsing).
+        \end{itemize}
+        \item Or do the parsing separately from the AST.
+        \item Examples
+        \begin{itemize}
+            \item tinyHTML
+            \item tinyDotStarter-parsingCompleted
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
@@ -505,7 +541,7 @@ L7 (5-13)
     \begin{itemize}
         \item L13 (24)
         \item L13 (25-26)
-        \item A5 (EX3)
+        \item A5 (3)
     \end{itemize}
 \end{itemize}
 
