@@ -25,12 +25,12 @@
 \begin{itemize}
     \item Domain Specific Languages (DSLs)
     \begin{enumerate}
-        \item Differentiate Domain Specific Languages (DSLs) from general-purpose programming languages and libraries, and motivate their usefulness.
-        \item Design a DSL tailored to assist a target kind of user with specific task.
-        \item Implement a DSL simply, providing clear and suitably-robust error handling.
-        \item Evaluate a language design's effectiveness via user studies, and incorporate user feedback by processing revisions to a language design.
-        \item Compare DSL motivations and justify which you find appropriate (or not).
-        \item Judge how useful you find a particular DSL design for a given task/user, identifying and estimating the significance of any weaknesses.
+        \item \sout{Differentiate Domain Specific Languages (DSLs) from general-purpose programming languages and libraries, and motivate their usefulness.}
+        \item \sout{Design a DSL tailored to assist a target kind of user with specific task.}
+        \item \sout{Implement a DSL simply, providing clear and suitably-robust error handling.}
+        \item \sout{Evaluate a language design's effectiveness via user studies, and incorporate user feedback by processing revisions to a language design.}
+        \item \sout{Compare DSL motivations and justify which you find appropriate (or not).}
+        \item \sout{Judge how useful you find a particular DSL design for a given task/user, identifying and estimating the significance of any weaknesses.}
         \item Describe the key stages of a typical DSL implementation, including their roles.
         \item Explain trade-offs regarding whether to have particular phases do more or less work (e.g. fine-grained tokenization, grammar precision, validation).
         \item Propose a suitable tokenization for given input examples in a given language.
@@ -101,6 +101,20 @@
 \end{itemize}
 
 \section{Domain Specific Languages}
+
+\subsection{EBNF}
+
+\begin{itemize}
+    \item Examples
+    \begin{itemize}
+        \item L2 (13)
+        \item L2 (15)
+        \item A1 (EX2)
+        \item A1 (EX3)
+        \item A1 (EX4)
+        \item A1 (EX5)
+    \end{itemize}
+\end{itemize}
 
 \subsection{Key Stages of DSL Implementation}
 
@@ -221,6 +235,18 @@ Example: L2 (5-13)
     \item tinyVars-UndefAlias
 \end{itemize}
 
+\subsection{What Could Be Checked Statically/Dynamically?}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{what_could_be_checked}
+\end{figure}
+
+\begin{itemize}
+    \item A property in terms of dynamically-bound attributes cannot be checked statically
+    \item A property that can be checked dynamically must have relevant attributes present at runtime.
+\end{itemize}
+
 \subsection{Static vs. Dynamic Checking}
 
 \begin{itemize}
@@ -238,6 +264,30 @@ Example: L2 (5-13)
         \item Can check more flexible properties (e.g. changing variable types at runtime).
         \item Info must be present at runtime.
         \item Maybe slow.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Implementation of Static/Dynamic Checking}
+
+\begin{itemize}
+    \item Check options
+    \begin{itemize}
+        \item Check and complain.
+        \item Check and adapt.
+        \item Ignore.
+    \end{itemize}
+    \item Use the Visitor Pattern to implement the checking.
+    \begin{itemize}
+        \item Use ``String'' as return type.
+        \begin{itemize}
+            \item Empty string $\rightarrow$ no error.
+            \item Otherwise $\rightarrow$ error message.
+        \end{itemize}
+        \item Use a ``Set$<$String$>$'' parameter to keep track of currently declared variables.
+    \end{itemize}
+    \item Examples
+    \begin{itemize}
+        \item tinyVars-StaticChecks
     \end{itemize}
 \end{itemize}
 
