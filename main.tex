@@ -42,11 +42,11 @@
         \item Design and run user studies to evaluate design questions empirically.
         \item Reflect on user feedback to identify potential root causes of any difficulties.
         \item Address these root problems with appropriate redesign ideas.
-        \item Implement evaluation methods for an AST (or similar data structures).
+        \item \sout{Implement evaluation methods for an AST (or similar data structures)}.
         \item Contrast the two evaluation approaches here (AST methods vs. Visitors).
         \item Judge when AST functionality should be refactored using the Visitor Pattern.
         \item Explain how the Visitor pattern simulates double-dispatch, and why double dispatch is important for the user (and reuse) of the pattern.
-        \item Choose when to use appropriate extensions of the underlying design patterns.
+        \item \sout{Choose when to use appropriate extensions of the underlying design patterns.}
         \item Give examples of a variety of attributes that may be bound to identifiers.
         \item Differentiate between attributes which are statically and dynamically bound.
         \item Implement language support for standard variable operations.
@@ -150,10 +150,35 @@ Example: L2 (5-13)
             \centering
             \includegraphics[width=\textwidth]{visitor_pattern}
         \end{minipage}
+        \item Defines external functionality over ASTs.
+        \item Useful for refactoring ASTs.
+        \begin{itemize}
+            \item Supports multiple kinds of evaluation.
+            \item Separates AST evaluation from AST representation.
+            \item Prevents violation against the Single Responsibility Principle.
+        \end{itemize}
         \item Examples
         \begin{itemize}
             \item tinyDotStarter-Visitor
+            \item tinyVars-Visitor
         \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Visitor Pattern and Double Dispatch}
+
+\begin{itemize}
+    \item Single dispatch: methods are dispatched based on the dynamic type of a single object (the receiver in Java).
+    \item Visitor Pattern uses two single-dispatched method to simulate double dispatch (L4 (15-17)).
+    \begin{itemize}
+        \item Every subclass of Node has an ``accept'' method.
+        \item A call to the ``accept'' method is dynamically dispatched to the subclass, where the static type of ``this'' is the same as the dynamic type of ``this'' object.
+        \item The we use it to select the indented (overloaded) ``visit'' method.
+    \end{itemize}
+    \item Double dispatch is important for code reuse.
+    \begin{itemize}
+        \item No need to change the code that represents ASTs.
+        \item Easy to implement different visitors that make use of the ASTs for different purposes.
     \end{itemize}
 \end{itemize}
 
