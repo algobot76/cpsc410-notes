@@ -221,6 +221,26 @@ Example: L2 (5-13)
     \item tinyVars-UndefAlias
 \end{itemize}
 
+\subsection{Static vs. Dynamic Checking}
+
+\begin{itemize}
+    \item Static Checking
+    \begin{itemize}
+        \item Checks enforced at/before compile time.
+        \item Only possible for properties in terms of statically-bound attributes.
+        \item Implemented via a traversal of the AST (e.g. with a visitor).
+        \item Can justify simpler/more efficient program evaluation (properties can be assumed).
+    \end{itemize}
+    \item Dynamic Checking
+    \begin{itemize}
+        \item Checks at runtime.
+        \item Properties may depend on attributes bound statically/dynamically (or both).
+        \item Can check more flexible properties (e.g. changing variable types at runtime).
+        \item Info must be present at runtime.
+        \item Maybe slow.
+    \end{itemize}
+\end{itemize}
+
 \section{User-Driven Language Design and Empirical Studies}
 
 \subsection{Logo and Grace}
