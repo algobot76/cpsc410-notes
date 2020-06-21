@@ -182,6 +182,45 @@ Example: L2 (5-13)
     \end{itemize}
 \end{itemize}
 
+\subsection{Attributes}
+
+\begin{itemize}
+    \item Properties of a named program element.
+    \begin{itemize}
+        \item Name.
+        \item Fact that it's a variable.
+        \item Declaration site.
+        \item Scope.
+        \item Initialization status.
+        \item Declared type.
+        \item Current value.
+        \item Location in memory.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Binding}
+
+\begin{itemize}
+    \item Associates attributes with names.
+    \item Static (statically bound): known at/before compile time.
+    \begin{itemize}
+        \item Declared variable types.
+        \item Selecting between overloaded methods for a call.
+    \end{itemize}
+    \item Dynamic (dynamically bound): chosen only at runtime.
+    \begin{itemize}
+        \item Calling overridden methods.
+        \item Variable values.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Implementation of TinyVars}
+
+\begin{itemize}
+    \item L5 (11-26)
+    \item tinyVars-UndefAlias
+\end{itemize}
+
 \section{User-Driven Language Design and Empirical Studies}
 
 \subsection{Logo and Grace}
